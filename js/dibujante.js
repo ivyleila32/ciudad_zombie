@@ -27,7 +27,7 @@ var Dibujante = {
   /* Dibuja una entidad en el juego, esto puede ser el jugador, un enemigo, etc
    es decir, cualquiera objeto que separ responder a los mensajes: sprite, x, y, ancho y alto*/
   dibujarEntidad: function (entidad) {
-    this.dibujarImagen(entidad.sprite, entidad.x, entidad.y, entidad.ancho, entidad.alto);
+    this.dibujarImagen(entidad.getSprite(), entidad.x, entidad.y, entidad.ancho, entidad.alto);
   },
 
   /* Dibuja un rectangulo del color pasado por paramentro en la posicion x, y
@@ -36,5 +36,14 @@ var Dibujante = {
     var ctx = this.canvas.getContext('2d');
     ctx.fillStyle = color;
     ctx.fillRect(x, y, ancho, alto);
+  },
+
+  dibujarTexto: function (texto, x, y, font, maxWidth) {
+    var ctx = this.canvas.getContext('2d');
+    ctx.font = font;
+    ctx.stroke = 'black';
+    ctx.fill = 'white';
+    ctx.fillText(texto, x, y, maxWidth);
+    ctx.strokeText(texto, x, y, maxWidth);
   },
 }
